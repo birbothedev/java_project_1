@@ -6,5 +6,4 @@ public class PersonHeartRate {
     DateOfBirth dateOfBirth = new DateOfBirth();
 
 
-
 }
