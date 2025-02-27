@@ -1,9 +1,12 @@
 package proj1;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class DateOfBirth {
     private Month month;
-    public int day;
-    public int year;
+    private int day;
+    private int year;
 
     // enum to only allow user to input these months
     public enum Month {
@@ -19,13 +22,6 @@ public class DateOfBirth {
         OCTOBER,
         NOVEMBER,
         DECEMBER
-    }
-
-
-    public DateOfBirth(){
-        this.day = 0;
-        this.year = 0;
-        this.month = Month.JANUARY;
     }
 
     public void setDay(int day){
@@ -63,11 +59,20 @@ public class DateOfBirth {
     }
 
     // constructor with parameters
-    public DateOfBirth(Month month, int day, int year){
+    public DateOfBirth(int year, Month month, int day){
         this.month = month;
         // validate day and year
         setDay(day);
         setYear(year);
+    }
+
+    int calculateAge(){
+        // get current date
+        LocalDate currentDay = LocalDate.now();
+        int monthValue = month.ordinal() + 1;
+        LocalDate birthDateLocalDate = LocalDate.of(year, monthValue, day);
+        // calculate age using period.between function
+        return Period.between(birthDateLocalDate, currentDay).getYears();
     }
 }
 
