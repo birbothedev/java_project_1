@@ -1,8 +1,5 @@
 package proj1;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 public class PersonHeartRate {
     private String firstName;
     private String lastName;
@@ -16,8 +13,8 @@ public class PersonHeartRate {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        calculateMaxHeartRate();
         calculateAge();
+        calculateMaxHeartRate();
         calculateHeartRateRange();
     }
 
@@ -29,12 +26,14 @@ public class PersonHeartRate {
         maxHeartRate = 220 - age;
     }
 
-    private String calculateHeartRateRange(){
+    private void calculateHeartRateRange(){
         heartRateRangeMin = maxHeartRate * 0.5;
         heartRateRangeMax = maxHeartRate * 0.85;
-        return "Target heart rate: " + heartRateRangeMin + " - " + heartRateRangeMax;
     }
 
-
-
+    public String printData(){
+        return firstName + ", " + lastName + "\n" +
+                "Max Heart Rate: " + maxHeartRate + "\n" +
+                "Target Heart Rate: " + heartRateRangeMin + " - " + heartRateRangeMax;
+    }
 }
