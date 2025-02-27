@@ -69,6 +69,7 @@ public class DateOfBirth {
     int calculateAge(){
         // get current date
         LocalDate currentDay = LocalDate.now();
+        // use index of the month to get an int value
         int monthValue = month.ordinal() + 1;
         LocalDate birthDateLocalDate = LocalDate.of(year, monthValue, day);
         // calculate age using period.between function
