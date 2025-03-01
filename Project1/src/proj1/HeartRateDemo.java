@@ -11,6 +11,10 @@ public class HeartRateDemo {
     public static void main(String[] args) {
         gatherInformation();
 
+        // loop through list and print data for each person
+        for (PersonHeartRate person : heartRateList){
+            System.out.println(person.printData() + "\n");
+        }
     }
 
     public static void gatherInformation(){
@@ -19,23 +23,26 @@ public class HeartRateDemo {
         System.out.println("Please enter your last name: ");
         String lastName = scanner.nextLine();
 
-        // custom delimiter to get all date of birth values from one line
-        scanner.useDelimiter( "/");
+        // split line based on slash to get all parts of date of birth
         System.out.println("Enter your Date of Birth (i.e. March/12/1972");
-        DateOfBirth.Month month = DateOfBirth.Month.valueOf(scanner.next().toUpperCase());
-        int day = scanner.nextInt();
-        int year = scanner.nextInt();
+        String line = scanner.nextLine();
+        String[] dobParts = line.split("/");
+        DateOfBirth.Month month = DateOfBirth.Month.valueOf(dobParts[0].toUpperCase());
+        int day = Integer.parseInt(dobParts[1]);
+        int year = Integer.parseInt(dobParts[2]);
 
-        // move onto next line to wait for new input and reset delimiter back to using whitespace
-        scanner.nextLine();
-        scanner.useDelimiter("\\s+");
-
-        DateOfBirth dob = new DateOfBirth(year, month, day);
         // add person to the list
+        DateOfBirth dob = new DateOfBirth(year, month, day);
         heartRateList.add(new PersonHeartRate(firstName, lastName, dob));
 
         System.out.println("Would you like to add another person? Y/N");
         String answer = scanner.nextLine();
+
+        if(answer.equalsIgnoreCase("y")){
+            gatherInformation();
+        } else {
+            System.out.println("All information has been added to the record.");
+        }
     }
 
 }

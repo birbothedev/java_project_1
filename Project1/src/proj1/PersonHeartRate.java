@@ -1,5 +1,7 @@
 package proj1;
 
+import static java.lang.Math.round;
+
 public class PersonHeartRate {
     private String firstName;
     private String lastName;
@@ -9,7 +11,7 @@ public class PersonHeartRate {
     private double heartRateRangeMin;
     private double heartRateRangeMax;
 
-    public PersonHeartRate(String firstName, String lastName, DateOfBirth dateOfBirth){
+    PersonHeartRate(String firstName, String lastName, DateOfBirth dateOfBirth){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -27,8 +29,9 @@ public class PersonHeartRate {
     }
 
     private void calculateHeartRateRange(){
-        heartRateRangeMin = maxHeartRate * 0.5;
-        heartRateRangeMax = maxHeartRate * 0.85;
+        // calculate heart rate range values and round to nearest int
+        heartRateRangeMin = round(maxHeartRate * 0.5);
+        heartRateRangeMax = round(maxHeartRate * 0.85);
     }
 
     public String printData(){
